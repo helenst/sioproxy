@@ -9,7 +9,7 @@ It can handle multiple servers and makes use of the socket.io protocol's endpoin
 
 Limitations:
 ------------
-* ignores socket.io's RPC - it just dumbly passes messages back and forth. Allows
+* ignores socket.io's RPC - it just dumbly passes messages back and forth.
 * no handling of reconnecting - if either client or server goes away, the other is cut off
 * text messages only
 * no SSL at present
