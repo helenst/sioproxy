@@ -37,8 +37,10 @@ class EndpointConnection(SocketConnection):
         # Find the right endpoint and create th connection
         dest = destinations[self.endpoint]
 
+        name = self.session.handler.name if self.session.handler else '??'
+        print self.session
         logger.info('New %s client for endpoint %s on port %s' %
-                    (self.session.handler.name, self.endpoint, dest[1]))
+                    (name, self.endpoint, dest[1]))
 
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
         self.endpoint_stream = iostream.IOStream(s)
