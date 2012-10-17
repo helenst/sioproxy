@@ -36,10 +36,13 @@ class EndpointConnection(SocketConnection):
 
         # Find the right endpoint and create th connection
         dest = destinations[self.endpoint]
+
+        logger.info('New %s client for endpoint %s on port %s' %
+                    (self.session.handler.name, self.endpoint, dest[1]))
+
         s = socket.socket(socket.AF_INET, socket.SOCK_STREAM, 0)
         self.endpoint_stream = iostream.IOStream(s)
         self.endpoint_stream.connect(dest, self.on_endpoint_connected)
-        logger.info('Opening new connection to endpoint on port %s' % dest[1])
 
     def on_message(self, message):
         """Client socket received data"""
