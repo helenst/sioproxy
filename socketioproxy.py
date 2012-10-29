@@ -38,7 +38,6 @@ class EndpointConnection(SocketConnection):
         dest = destinations[self.endpoint]
 
         name = self.session.handler.name if self.session.handler else '??'
-        print self.session
         logger.info('New %s client for endpoint %s on port %s' %
                     (name, self.endpoint, dest[1]))
 
@@ -101,7 +100,7 @@ class ProxyConnection(SocketConnection):
     __endpoints__ = {name: EndpointConnection for name in destinations}
 
 
-ProxyRouter = TornadioRouter(ProxyConnection)
+ProxyRouter = TornadioRouter(ProxyConnection, {"verify_remote_ip": False, })
 
 app = web.Application(
     ProxyRouter.urls,
